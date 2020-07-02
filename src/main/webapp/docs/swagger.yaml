@@ -1,0 +1,1099 @@
+swagger: '2.0'
+info:
+  description: Api para buscar contenido audiovisual
+  version: 1.0.0
+  title: MovieFinder
+  # put the contact info for your development or API team
+  contact:
+    email: alvagualh@alum.us.es
+
+servers:
+  url: https://snmanager.appspot.com/api
+  description: Entrada a la api desplegada
+# tags are used for organizing operations
+tags:
+- name: Actor
+  description: Operaciones con la clase Actor
+- name: Audiovisual
+  description: Operaciones con la clase AudioVisual
+- name: Pelicula
+  description: Operaciones con la clase Pelicula
+- name: Playlist
+  description: Operaciones con la clase playlist
+- name: Serie
+  description: Operaciones con la clase Serie
+- name: Song
+  description: Operaciones con la clase song
+- name: Tipo
+  description: Operaciones con la clase Tipo
+paths:
+  /lists:
+    get:
+      tags:
+      - Playlist
+      summary: getLists
+      operationId: getLists
+      description: Devuelve todas las playlist de banda sonoras
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Dando resultados
+          schema:
+            $ref: '#/definitions/Playlist'
+        400:
+          description: bad input parameter
+    post:
+      tags:
+      - Playlist
+      summary: addList
+      operationId: addList
+      description: Añadir lista al sistema
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: addList
+        description: List to add
+        schema:
+          $ref: '#/definitions/Playlist'
+      responses:
+        201:
+          description: playlist created
+          schema:
+            $ref: '#/definitions/Playlist'
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+    put:
+      tags:
+      - Playlist
+      summary: updateList
+      operationId: updateList
+      description: Actualizar lista del sistema
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: updateList
+        description: List to add
+        schema:
+          $ref: '#/definitions/Playlist'
+      responses:
+        201:
+          description: playlist updated
+          schema:
+            $ref: '#/definitions/Playlist'
+        400:
+          description: invalid input, object invalid
+        409:
+          description: an existing item already exists
+  /list/{playlistId}:
+    get:
+      tags:
+      - Playlist
+      summary: getList
+      parameters:
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+        description: Id de la playlist
+      operationId: getList
+      description: Devuelve la playlist de ese id de banda sonoras
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Dando resultados
+          schema:
+            $ref: '#/definitions/Playlist'
+        400:
+          description: bad input parameter
+  /lists/{playlistId}:
+    delete:
+      tags:
+      - Playlist
+      summary: deleteList
+      parameters:
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+        description: Id de la playlist
+      operationId: deleteList
+      description: Elimina la playlist con ese id
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /lists/{playlistId}/{songId}:
+    post:
+      tags:
+      - Playlist
+      summary: addSongAtList
+      parameters:
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+        description: Id de la playlist
+      - in: path
+        name: songId
+        required: true
+        schema:
+          type: string
+        description: Id de la cancion
+      operationId: addSongAtList
+      description: Añade cancion a la playlist
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Playlist
+      summary: deleteSongAtList
+      parameters:
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+        description: Id de la playlist
+      - in: path
+        name: songId
+        required: true
+        schema:
+          type: string
+      operationId: deleteSongAtList
+      description: Elimina cancion de la playlist
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /songs:
+    get:
+      tags:
+      - Song
+      summary: getSongs
+      operationId: getSongs
+      description: Devuelve todas las canciones
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Dando todas las canciones
+          schema:
+            $ref: '#/definitions/Song'
+    post:
+      tags:
+      - Song
+      summary: addSong
+      operationId: addSong
+      description: Añadir una nueva cancion
+      parameters:
+      - in: body
+        name: addSong
+        description: Song to add
+        schema:
+          $ref: '#/definitions/Song'
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - Song
+      summary: updateSong
+      operationId: updateSong
+      description: Actualizar una cancion
+      parameters:
+      - in: body
+        name: updateSong
+        description: Song to add
+        schema:
+          $ref: '#/definitions/Song'
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /songs/{songId}:
+    get:
+      tags:
+      - Song
+      summary: getSong
+      parameters:
+      - in: path
+        name: songId
+        required: true
+        schema:
+          type: string
+        description: Id de la cancion
+      operationId: getSong
+      description: Devuelve la cancion de ese id
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Dando resultados
+          schema:
+            $ref: '#/definitions/Song'
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Song
+      summary: deleteSong
+      parameters:
+      - in: path
+        name: songId
+        required: true
+        schema:
+          type: string
+        description: Id de la cancion
+      operationId: deleteSong
+      description: Elimina la cancion con ese id
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /actor:
+    get:
+      tags: 
+      - Actor
+      summary: getAllActores
+      operationId: getAllActores
+      description: Devuelve todos los actores
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: Devolviendo contenido
+          schema:
+            $ref: '#/definitions/Actor'
+    post:
+      tags:
+      - Actor
+      summary: addActor
+      parameters:
+      - in: body
+        name: addActor
+        description: Añadir actor
+        schema:
+          $ref: '#/definitions/Actor'
+      operationId: addActor
+      description: Añadir un actor
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - Actor
+      summary: updateActor
+      parameters:
+      - in: body
+        name: updateActor
+        description: Actualizar actor
+        schema:
+          $ref: '#/definitions/Actor'
+      operationId: updateActor
+      description: Actualizar actor
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /actor/{actorId}:
+    get:
+      tags:
+      - Actor
+      summary: getActor
+      parameters:
+      - in: path
+        name: actorId
+        required: true
+        description: Id de actor
+        schema:
+          type: string
+      operationId: getActor
+      description: Devuelve un actor
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve el actor
+          schema:
+            $ref: '#/definitions/Actor'
+    delete:
+      tags:
+      - Actor
+      summary: deleteActor
+      parameters:
+      - in: path
+        name: actorId
+        required: true
+        description: Id de actor
+        schema:
+          type: string
+      operationId: deleteActor
+      description: Elimina un actor
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /serie:
+    get:
+      tags: 
+      - Serie
+      summary: getAllSeries
+      operationId: getAllSeries
+      description: Devuelve todas las series
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: Devolviendo contenido
+          schema:
+            $ref: '#/definitions/Serie'
+    post:
+      tags:
+      - Serie
+      summary: addSerie
+      parameters:
+      - in: body
+        name: addSerie
+        description: Añadir serie
+        schema:
+          $ref: '#/definitions/Serie'
+      operationId: addSerie
+      description: Añadir una serie
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - Serie
+      summary: updateSerie
+      parameters:
+      - in: body
+        name: updateSerie
+        description: Actualizar serie
+        schema:
+          $ref: '#/definitions/Serie'
+      operationId: updateSerie
+      description: Actualizar serie
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /serie/{serieId}:
+    get:
+      tags:
+      - Serie
+      summary: getSerie
+      parameters:
+      - in: path
+        name: serieId
+        required: true
+        description: Id de serie
+        schema:
+          type: string
+      operationId: getSerie
+      description: Devuelve una serie
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve la serie
+          schema:
+            $ref: '#/definitions/Serie'
+    delete:
+      tags:
+      - Serie
+      summary: deleteSerie
+      parameters:
+      - in: path
+        name: serieId
+        required: true
+        description: Id de serie
+        schema:
+          type: string
+      operationId: deleteSerie
+      description: Elimina una serie
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /pelicula:
+    get:
+      tags: 
+      - Pelicula
+      summary: getAllPeliculas
+      operationId: getAllPeliculas
+      description: Devuelve todas las peliculas
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: Devolviendo contenido
+          schema:
+            $ref: '#/definitions/Pelicula'
+    post:
+      tags:
+      - Pelicula
+      summary: addPelicula
+      parameters:
+      - in: body
+        name: addPelicula
+        description: Añadir pelicula
+        schema:
+          $ref: '#/definitions/Pelicula'
+      operationId: addPelicula
+      description: Añadir una pelicula
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - Pelicula
+      summary: updatePelicula
+      parameters:
+      - in: body
+        name: updatePelicula
+        description: Actualizar pelicula
+        schema:
+          $ref: '#/definitions/Pelicula'
+      operationId: updatePelicula
+      description: Actualizar pelicula
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /pelicula/{peliculaId}:
+    get:
+      tags:
+      - Pelicula
+      summary: getPelicula
+      parameters:
+      - in: path
+        name: peliculaId
+        required: true
+        description: Id de pelicula
+        schema:
+          type: string
+      operationId: getPelicula
+      description: Devuelve una pelicula
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve la pelicula
+          schema:
+            $ref: '#/definitions/Pelicula'
+    delete:
+      tags:
+      - Pelicula
+      summary: deletePelicula
+      parameters:
+      - in: path
+        name: peliculaId
+        required: true
+        description: Id de pelicula
+        schema:
+          type: string
+      operationId: deletePelicula
+      description: Elimina una pelicula
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /tipo:
+    post:
+      tags:
+      - Tipo
+      summary: addTipo
+      parameters:
+      - in: body
+        name: addTipo
+        description: Añadir tipo
+        schema:
+          $ref: '#/definitions/Tipo'
+      operationId: addTipo
+      description: Añadir un tipo
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+  /tipo/{tipoId}:
+    get:
+      tags:
+      - Tipo
+      summary: getTipo
+      parameters:
+      - in: path
+        name: tipoId
+        required: true
+        description: Id de tipo
+        schema:
+          type: string
+      operationId: getTipo
+      description: Devuelve un tipo
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve el tipo
+          schema:
+            $ref: '#/definitions/Tipo'
+  /tipo/{tipoId}/{peliculaId}:
+    post:
+      tags:
+      - Tipo
+      summary: addPeliculaATipo
+      parameters:
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+        description: Id del tipo
+      - in: path
+        name: peliculaId
+        required: true
+        schema:
+          type: string
+        description: Id de la pelicula
+      operationId: addPeliculaATipo
+      description: Añade pelicula a tipo
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Tipo
+      summary: deletePeliculaDeTipo
+      parameters:
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+        description: Id del tipo
+      - in: path
+        name: peliculaId
+        required: true
+        schema:
+          type: string
+      operationId: deletePeliculaDeTipo
+      description: Elimina pelicula del tipo
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /tipo/{tipoId}/{serieId}:
+    post:
+      tags:
+      - Tipo
+      summary: addSerieATipo
+      parameters:
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+        description: Id del tipo
+      - in: path
+        name: serieId
+        required: true
+        schema:
+          type: string
+        description: Id de la serie
+      operationId: addSerieATipo
+      description: Añade serie a tipo
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Tipo
+      summary: deleteSerieDeTipo
+      parameters:
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+        description: Id del tipo
+      - in: path
+        name: serieId
+        required: true
+        schema:
+          type: string
+      operationId: deleteSerieDeTipo
+      description: Elimina serie del tipo
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /audiovisual:
+    get:
+      tags: 
+      - Audiovisual
+      summary: getAllAudiovisuales
+      operationId: getAllAudiovisuales
+      description: Devuelve todas los audiovisuales
+      produces: 
+      - application/json
+      responses:
+        200:
+          description: Devolviendo contenido
+          schema:
+            $ref: '#/definitions/AudioVisual'
+    post:
+      tags:
+      - Audiovisual
+      summary: addAudiovisual
+      parameters:
+      - in: body
+        name: addAudiovisual
+        description: Añadir audiovisual
+        schema:
+          $ref: '#/definitions/AudioVisual'
+      operationId: addAudiovisual
+      description: Añadir un audiovisual
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+    put:
+      tags:
+      - Audiovisual
+      summary: updateAudiovisual
+      parameters:
+      - in: body
+        name: updateAudiovisual
+        description: Actualizar audiovisual
+        schema:
+          $ref: '#/definitions/AudioVisual'
+      operationId: updateAudiovisual
+      description: Actualizar audiovisual
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /audiovisual/{audiovisualId}:
+    get:
+      tags:
+      - Audiovisual
+      summary: getAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        description: Id del audiovisual
+        schema:
+          type: string
+      operationId: getAudiovisual
+      description: Devuelve un audiovisual
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Devuelve el audiovisual
+          schema:
+            $ref: '#/definitions/AudioVisual'
+    delete:
+      tags:
+      - Audiovisual
+      summary: deleteAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        description: Id del audiovisual
+        schema:
+          type: string
+      operationId: deleteAudiovisual
+      description: Elimina un audiovisual
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+  /audiovisual/{audiovisualId}/{playlistId}:
+    post:
+      tags:
+      - Audiovisual
+      summary: addPlaylistAAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+        description: Id de la playlist
+      operationId: addPlaylistAAudiovisual
+      description: Añade playlist a audiovisual
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Audiovisual
+      summary: deletePlaylistDeAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: playlistId
+        required: true
+        schema:
+          type: string
+      operationId: deletePlaylistDeAudiovisual
+      description: Elimina playlist del audiovisual
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /audiovisual/{audiovisualId}/{tipoId}:
+    post:
+      tags:
+      - Audiovisual
+      summary: addTipoAAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+        description: Id del tipo
+      operationId: addTipoAAudiovisual
+      description: Añade tipo a audiovisual
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Audiovisual
+      summary: deleteTipoDeAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: tipoId
+        required: true
+        schema:
+          type: string
+      operationId: deleteTipoDeAudiovisual
+      description: Elimina tipo del audiovisual
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found
+  /audiovisual/{audiovisualId}/{actorId}:
+    post:
+      tags:
+      - Audiovisual
+      summary: addActorAAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: actorId
+        required: true
+        schema:
+          type: string
+        description: Id del actor
+      operationId: addActorAAudiovisual
+      description: Añade actor a audiovisual
+      produces:
+      - application/json
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+        404:
+          description: Not found
+    delete:
+      tags:
+      - Audiovisual
+      summary: deleteActorDeAudiovisual
+      parameters:
+      - in: path
+        name: audiovisualId
+        required: true
+        schema:
+          type: string
+        description: Id del audiovisual
+      - in: path
+        name: actorId
+        required: true
+        schema:
+          type: string
+      operationId: deleteActorDeAudiovisual
+      description: Elimina actor del audiovisual
+      produces:
+      - application/json
+      responses:
+        204:
+          description: No contend
+        404:
+          description: Not found        
+definitions:
+  AudioVisual:
+    type: object
+    required:
+    - id
+    - nombre
+    properties:
+      id:
+        type: string
+        example: av1
+      nombre:
+        type: string
+        example: Bohemian Rhapsody
+      tipo:
+        $ref: '#/definitions/Tipo'
+      actores:
+        type: array
+        items:
+          $ref: '#/definitions/Actor'
+      soundtrack:
+        $ref: '#/definitions/Playlist'
+  Actor:
+    required:
+    - id
+    - nombre
+    properties:
+      id:
+        type: string
+        example: a1
+      nombre:
+        type: string
+        example: Rami Malek
+      nacionalidad:
+        type: string
+        example:  Estadounidense
+      fechaNacimiento:
+        type: string
+        format: date
+        example: 17-10-1980
+      fechaMuerte:
+        type: string
+        format: date
+        example: 17-10-2020
+      premios:
+        type: string
+        example: Emmy, oscar
+  Playlist:
+    required:
+    - id
+    - nombre
+    properties:
+      id:
+        type: string
+        example: p1
+      nombre:
+        type: string
+        example: Bohemian Rhapsody ST
+      description:
+        type: string
+        example: Banda sonora de la pelicula Bohemian Rhapsody
+      songs:
+        type: array
+        items:
+          $ref: '#/definitions/Song'
+  Song:
+    required:
+    - id
+    - title
+    properties:
+      id:
+        type: string
+        example: so1
+      title:
+        type: string
+        example: Show must go on
+      artist:
+        type: string
+        example: Queen
+      album:
+        type: string
+        example: Bohemian Rhapsody
+      year:
+        type: string
+        example: 1970
+  Tipo:
+    required:
+    - id
+    properties:
+      id:
+        type: string
+        example: t1
+      serie:
+        $ref: '#/definitions/Serie'
+      pelicula:
+        $ref: '#/definitions/Pelicula'
+  Pelicula:
+    required:
+    - id
+    - director
+    properties:
+      id:
+        type: string
+        example: pe1
+      director:
+        type: string
+        example: Cristopher Nolan
+      fechaEstreno:
+        type: string
+        format: date
+        example: 15-11-2019
+  Serie:
+    required:
+    - id
+    - temporadas
+    properties:
+      id:
+        type: string
+        example: s1
+      temporadas:
+        type: integer
+        example: 2
+      ultFechaEmision:
+        type: string
+        format: date
+        example: 20-10-2017
+      estreno:
+        type: string
+        format: date
+        example: 12-9-2013
+      canal:
+        type: string
+        example: HBO
+# Added by API Auto Mocking Plugin
+# host: snmanager.appspot.com
+# basePath: /api/
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /alvagualh/MovieFinder/1.0.0

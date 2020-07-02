@@ -1,0 +1,43 @@
+*{
+margin: 0;
+padding: 0;
+font-family:montserrat;
+background-image: url("background.png");
+background-position: -100px -30px;
+}
+
+footer {
+	position: absolute;
+	right:0;
+	bottom:0;
+	left:0;
+	padding: 1rem;
+	text-align: center;
+	color: white; 
+}
+
+body {
+	position: static;
+	right:0;
+	bottom:0;
+	left:0;
+	padding: 1rem;
+	text-align: center;
+	color: white; 
+}
+
+.enviar{ 
+    text-decoration: none;
+    padding: 2px;
+    font-weight: 600;
+    font-size: 20px;
+    color: grey;
+    background-color: black;
+    border-radius: 6px;
+    border: 1px solid red;
+	margin: 10px;
+}
+
+
+
+

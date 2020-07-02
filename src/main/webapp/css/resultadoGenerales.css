@@ -1,0 +1,50 @@
+body{
+	margin:0;
+	padding: 0;	
+	font-family: montserrat;
+	background-image: url("/images/backgroundPP.png");
+	background-position: -100px -30px;
+}
+
+
+.cabecera{
+    width: 30%;
+    height: 15%;
+    display:block;
+    margin:auto;
+}	
+
+
+.pelis{
+	border: 5px solid black;
+	border-radius: 60px;
+	width: 500px;
+	height: 400px;
+	display: inline-block;
+	word-warp: break-word;
+	margin: 50px;
+	padding: 20px;;
+	color: white;
+	clear: both;
+	overflow: hidden;
+	background: black;
+	border: #96898A 3px solid;
+}
+.imagen{
+	float: left;
+	margin: 10px;
+	border: #96989A 3px solid;
+}
+.nombre{
+	font-weight: bold;
+	font-size: xx-large;
+	color: #0066ff;
+	
+}
+.puntuacion{
+	color: red;
+}
+.overview{
+	font-style: italic;
+}
+

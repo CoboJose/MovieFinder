@@ -1,0 +1,111 @@
+.cabecera{
+    width: 30%;
+    height: 15%;
+    display:block;
+    margin:auto;
+}
+
+body{
+	margin:50px;
+	padding: 0;	
+	font-family: montserrat;
+	background-image: url("/images/backgroundPP.png");
+	background-position: -100px -30px;
+	color: white;
+}
+.imagen{	
+	float: left;
+	margin: 10px;
+	border: #96989A 3px solid;
+}
+.footer{
+	float: down;
+	position: absolute;
+	color: grey;
+}
+.titulo{
+	font-weight: bold;
+	font-size: xx-large;
+	color: #0066ff;
+}
+.puntuacion{
+	color: red;
+}
+.fecha{
+	color: red;
+}
+.generos{
+	color: red;
+}
+.overview{
+	font-style: italic;
+}
+.enviar{ 
+    text-decoration: none;
+    padding: 2px;
+    font-weight: 600;
+    font-size: 20px;
+    color: grey;
+    background-color: black;
+    border-radius: 6px;
+    border: 1px solid red;
+	margin: 10px;
+}
+.puntuar{
+	margin: 10px;
+}
+.calendarcontrol{
+	margin: 10px;
+}
+.aliyyt{
+	float: bottom;
+}
+.trailersound{
+	border: 5px solid black;
+	border-radius: 60px;
+	display: inline-block;
+	margin: 15px;
+	padding: 20px;
+	color: white;
+	clear: both;
+	background: black;
+	border: #96898A 3px solid;
+	width: 1250px;
+	height: 400px;
+}
+.h3{
+	float: right;
+	position: absolute;
+	top: 747px;
+	right: 297px;
+	font-size: 23px;
+}
+.h2{
+}
+.trailer{
+	margin:20px;
+}
+.sound{
+	float: right;
+	position: absolute;
+	top: 834px;
+}
+.mercha{
+	border-radius: 60px;
+	width: 266px;
+	height: 278px;
+	display: inline-block;
+	word-warp: break-word;
+	margin: 50px;
+	padding: 20px;
+	color: white;
+	clear: both;
+	overflow: hidden;
+	background: black;
+	border: #96898A 3px solid;
+	text-align: center;
+	align: center;
+	}
+.tituloAli{
+	color: white;
+}

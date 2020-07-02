@@ -1,0 +1,142 @@
+*{
+	 font-family: Bookman;
+	 }
+body{ 
+
+	padding: 0;	
+	background-image: url("BackgroundPP.png");
+}
+a{
+	text-decoration:none;
+}
+option, ::placeholder, input:focus {
+	color: black;
+	opacity:1;}
+
+#descubrirTitulo{
+	margin-left: 15%;
+}
+#buscarTitulo{
+	margin-left: 12%;
+}
+h2{
+	
+	color:white;}
+
+.formulario{
+	margin-bottom: 3%;
+	color:white;}
+
+
+
+.titulo{
+	margin-top: 3%;
+	margin-bottom: 5%;}
+
+
+button{
+	color:black;
+	width: 18%;
+	padding: 1%;
+}
+
+span {
+	position: absolute;
+	left: 50%;
+	border: 1px solid black;
+	width: 15%;
+	padding: 1%;
+	background: #f1f2f6;
+	margin-bottom: 2%;
+	padding-left: 3%;
+	}
+
+.loginC a{
+	color: black;
+	}
+
+.cabecera{
+   	width: 30%;
+    	height: 15%;
+    	display:block;
+    	margin:auto;
+}
+
+.authA{
+	margin-top: 4%;
+	margin-right: 7%;
+	position: absolute;
+	right: 0%;
+	width: 30%;
+	border: 1px solid grey;
+	background: black;
+	
+	padding: 3%;
+	border-radius: 60px;
+}
+
+ label, .est{
+	color: white;
+	}
+
+.authA a{
+	color: black;
+}
+
+
+footer p{
+	display:block;
+    margin:auto;
+}
+
+form label{
+	color:white;
+}
+
+footer{
+	background: black;
+	margin-bottom: 0%;
+	width:100%;
+}
+
+footer p {
+	color:white;
+	text-align: center;
+}
+
+
+
+#descubrirPeliculas{
+	margin-left: 5%;
+	margin-bottom: 5%;
+	background-color: black;
+	border: 2px solid grey;
+	width: 40%;
+	padding:2%;
+	border-radius: 60px;
+}
+
+.peliculasWatchlist{
+	border-radius: 60px;
+	width: 120px;
+	height: 223px;
+	display: inline-block;
+	margin: 50px;
+	padding: 21px;
+	color: white;
+	clear: both;
+	background: black;
+	border: #96898A 3px solid;
+	overflow: hidden;
+	
+}
+.pelii{
+	text-align: center;
+	align: center;
+}
+.calendar{
+	margin-left: 10%;
+	position: absolute;
+	right: 72px;
+	top: 565px;
+}

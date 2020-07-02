@@ -1,0 +1,9 @@
+{	
+    "GoogleCalendar": { 
+        "tokenUrl": "https://www.googleapis.com/oauth2/v4/token",
+        "clientId": "344697333230-lenndmakt5se7b6hn1u4s692gp02tr38.apps.googleusercontent.com",
+        "clientSecret": "uwHT06rOxkiS7B6DMOoXTsAf",
+        "authorizationFormUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+        "scopes": ["https://www.googleapis.com/auth/calendar"]
+    }
+}		
